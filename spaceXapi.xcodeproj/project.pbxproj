@@ -13,6 +13,12 @@
 		B5B96AE529AE0188009B31BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B96AE329AE0188009B31BB /* Main.storyboard */; };
 		B5B96AE729AE0189009B31BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B96AE629AE0189009B31BB /* Assets.xcassets */; };
 		B5B96AEA29AE0189009B31BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B96AE829AE0189009B31BB /* LaunchScreen.storyboard */; };
+		B5B96AF929AE0AD6009B31BB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = B5B96AF829AE0AD6009B31BB /* Moya */; };
+		B5B96AFC29AE0B0C009B31BB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B5B96AFB29AE0B0C009B31BB /* Alamofire */; };
+		B5B96AFF29AE0C23009B31BB /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = B5B96AFE29AE0C23009B31BB /* Stevia */; };
+		B5B96B0229AE3BEB009B31BB /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96B0129AE3BEB009B31BB /* LaunchModel.swift */; };
+		B5B96B0429AE95D6009B31BB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96B0329AE95D6009B31BB /* ApiService.swift */; };
+		B5B96B0629AE96B7009B31BB /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96B0529AE96B7009B31BB /* String+URL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,9 @@
 		B5B96AE629AE0189009B31BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5B96AE929AE0189009B31BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5B96AEB29AE0189009B31BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B96B0129AE3BEB009B31BB /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
+		B5B96B0329AE95D6009B31BB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		B5B96B0529AE96B7009B31BB /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B96AFF29AE0C23009B31BB /* Stevia in Frameworks */,
+				B5B96AF929AE0AD6009B31BB /* Moya in Frameworks */,
+				B5B96AFC29AE0B0C009B31BB /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,12 +71,23 @@
 				B5B96ADD29AE0188009B31BB /* AppDelegate.swift */,
 				B5B96ADF29AE0188009B31BB /* SceneDelegate.swift */,
 				B5B96AE129AE0188009B31BB /* ViewController.swift */,
+				B5B96B0329AE95D6009B31BB /* ApiService.swift */,
+				B5B96B0529AE96B7009B31BB /* String+URL.swift */,
+				B5B96B0029AE3BDA009B31BB /* Model */,
 				B5B96AE329AE0188009B31BB /* Main.storyboard */,
 				B5B96AE629AE0189009B31BB /* Assets.xcassets */,
 				B5B96AE829AE0189009B31BB /* LaunchScreen.storyboard */,
 				B5B96AEB29AE0189009B31BB /* Info.plist */,
 			);
 			path = spaceXapi;
+			sourceTree = "<group>";
+		};
+		B5B96B0029AE3BDA009B31BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5B96B0129AE3BEB009B31BB /* LaunchModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +106,11 @@
 			dependencies = (
 			);
 			name = spaceXapi;
+			packageProductDependencies = (
+				B5B96AF829AE0AD6009B31BB /* Moya */,
+				B5B96AFB29AE0B0C009B31BB /* Alamofire */,
+				B5B96AFE29AE0C23009B31BB /* Stevia */,
+			);
 			productName = spaceXapi;
 			productReference = B5B96ADA29AE0188009B31BB /* spaceXapi.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +139,11 @@
 				Base,
 			);
 			mainGroup = B5B96AD129AE0188009B31BB;
+			packageReferences = (
+				B5B96AF729AE0AD6009B31BB /* XCRemoteSwiftPackageReference "Moya" */,
+				B5B96AFA29AE0B0C009B31BB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B5B96AFD29AE0C23009B31BB /* XCRemoteSwiftPackageReference "Stevia" */,
+			);
 			productRefGroup = B5B96ADB29AE0188009B31BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +171,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B96B0229AE3BEB009B31BB /* LaunchModel.swift in Sources */,
+				B5B96B0429AE95D6009B31BB /* ApiService.swift in Sources */,
+				B5B96B0629AE96B7009B31BB /* String+URL.swift in Sources */,
 				B5B96AE229AE0188009B31BB /* ViewController.swift in Sources */,
 				B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */,
 				B5B96AE029AE0188009B31BB /* SceneDelegate.swift in Sources */,
@@ -216,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -295,6 +331,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,6 +339,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = alexei.poprotskii.spaceXapi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -323,6 +363,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,6 +371,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = alexei.poprotskii.spaceXapi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,6 +402,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5B96AF729AE0AD6009B31BB /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B5B96AFA29AE0B0C009B31BB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B5B96AFD29AE0C23009B31BB /* XCRemoteSwiftPackageReference "Stevia" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/freshOS/Stevia#-reason";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5B96AF829AE0AD6009B31BB /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5B96AF729AE0AD6009B31BB /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		B5B96AFB29AE0B0C009B31BB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5B96AFA29AE0B0C009B31BB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B5B96AFE29AE0C23009B31BB /* Stevia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5B96AFD29AE0C23009B31BB /* XCRemoteSwiftPackageReference "Stevia" */;
+			productName = Stevia;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5B96AD229AE0188009B31BB /* Project object */;
 }
