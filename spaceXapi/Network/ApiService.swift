@@ -37,12 +37,12 @@ extension ApiService: TargetType {
     var task: Task {
         switch self {
         case .pastLaunches(let page):
-            
+//            desc asc
             let dateFilter = ["$gte": "2021-01-01T00:00:00.000Z"]
             let query = ["date_utc": dateFilter]
             let options: [String : Any] = [
                 "page": page,
-                "sort": "desc"
+                "sort": ["date_utc": "desc"]
             ]
             
             let parameters: [String : Any]  = [

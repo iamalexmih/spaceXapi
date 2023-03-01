@@ -14,11 +14,11 @@ class LaunchTableViewCell: UITableViewCell {
     static let cellId = "cell"
     
     let cardView = UIView()
-    let iconMission = UIImageView() // links.patch.small
-    let nameLabel = UILabel() // (name)
-    let dateLabel = UILabel() // формат даты ДД-ММ-ГГГГ
+    let iconMission = WebImageView()
+    let nameLabel = UILabel()
+    let dateLabel = UILabel()
     let statusMissionLabel = UILabel()
-    let countFirstStagesLabel  = UILabel() // cores.flight
+    let countFirstStagesLabel  = UILabel()
     let stackLabels = UIView()
     
     
@@ -29,12 +29,9 @@ class LaunchTableViewCell: UITableViewCell {
 
         layoutViews()
         configCardView()
-        
-        iconMission.backgroundColor = .gray
-        iconMission.layer.cornerRadius = 15
-        
+        configIconMission()
+        configNameLabel()
         configDateLabel()
-        exampleTextForLabels()
     }
     
     required init?(coder: NSCoder) {
@@ -42,33 +39,21 @@ class LaunchTableViewCell: UITableViewCell {
     }
     
     func setupCell(descriptionLaunch: ListLaunch) {
-        statusMissionLabel.text = "status: \(String(describing: descriptionLaunch.success))"
+        // TODO: перенести логику Статус Миссии success в модель для парсинга.
+        statusMissionLabel.text = "status: \(String(describing: descriptionLaunch.success?.description ?? "N/A"))"
         nameLabel.text = "\(descriptionLaunch.name ?? "N/A")"
-        countFirstStagesLabel.text = "count First Stages: \(descriptionLaunch.cores.count)"
+        countFirstStagesLabel.text = "count first stages: \(descriptionLaunch.cores?.count.description ?? "N/A")"
+        
+        iconMission.set(imageURL: descriptionLaunch.links.patch?.small)
         
         // сделать Расширения для преобразования даты
         let date = descriptionLaunch.date_utc
-        
+        dateLabel.text = date?.convertDate()
         // Сервис для скачивания картинки
     }
     
-    private func configDateLabel() {
-        dateLabel.font = UIFont.systemFont(ofSize: 14)
-        dateLabel.textColor = .gray
-        dateLabel.textAlignment = .right
-        dateLabel.text = "01.03.2023"
-    }
     
-    private func configCardView() {
-        cardView.layer.cornerRadius = 15
-        cardView.backgroundColor = UIColor(named: "cardViewBG")
-    }
-    
-    private func exampleTextForLabels() {
-        statusMissionLabel.text = "status: Succes"
-        nameLabel.text = "KoreaSat 5A"
-        countFirstStagesLabel.text = "count First Stages: 5"
-    }
+
 }
 
 
@@ -102,14 +87,39 @@ extension LaunchTableViewCell {
             16
         }
         
-        cardView.top(10).left(16).right(16).bottom(10).height(200)
+        cardView.top(10).left(16).right(16).bottom(10).height(160)
         
         cardView.layout {
             16
-            |-16-iconMission.size(140)-16-stackLabels.centerVertically()-16-|
+            |-16-iconMission.size(100)-16-stackLabels.centerVertically()-16-|
             16
             |-16-dateLabel.fillHorizontally()-16-|
             16
         }
+    }
+}
+
+// MARK: Configuration Interface Label and View
+
+extension LaunchTableViewCell {
+    private func configNameLabel() {
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+    }
+    
+    private func configDateLabel() {
+        dateLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        dateLabel.textColor = .gray
+        dateLabel.textAlignment = .right
+    }
+    
+    private func configCardView() {
+        cardView.layer.cornerRadius = 15
+        cardView.backgroundColor = UIColor(named: "cardViewBG")
+    }
+    
+    private func configIconMission() {
+        iconMission.layer.cornerRadius = 50
+        iconMission.clipsToBounds = true
+        iconMission.contentMode = .scaleAspectFit
     }
 }

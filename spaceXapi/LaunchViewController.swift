@@ -54,7 +54,7 @@ class LaunchViewController: UIViewController {
 
         let provider = MoyaProvider<ApiService>()
         
-        provider.request(.pastLaunches(page: 1))
+        provider.request(.pastLaunches(page: 2))
         { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -63,7 +63,6 @@ class LaunchViewController: UIViewController {
                 do {
                     let launchData = try response.map(LaunchModel.self)
                     self.listLaunches = launchData.docs
-                    print(launchData.docs.count)
                     self.tableView.reloadData()
                 } catch {
                     print(error.localizedDescription)

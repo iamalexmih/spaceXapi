@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B508700429AFDF790009ACD3 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508700329AFDF790009ACD3 /* WebImageView.swift */; };
 		B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADD29AE0188009B31BB /* AppDelegate.swift */; };
 		B5B96AE029AE0188009B31BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADF29AE0188009B31BB /* SceneDelegate.swift */; };
 		B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96AE129AE0188009B31BB /* LaunchViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B508700329AFDF790009ACD3 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		B5B96ADA29AE0188009B31BB /* spaceXapi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spaceXapi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B96ADD29AE0188009B31BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B96ADF29AE0188009B31BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				B5B96B0A29AF6CDA009B31BB /* LaunchTableViewCell.swift */,
 				B5B96B0829AF6BB4009B31BB /* Network */,
 				B5B96B0529AE96B7009B31BB /* String+URL.swift */,
+				B508700329AFDF790009ACD3 /* WebImageView.swift */,
 				B5B96B0029AE3BDA009B31BB /* Model */,
 				B5B96B0929AF6BC1009B31BB /* Resource */,
 			);
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B96B0229AE3BEB009B31BB /* LaunchModel.swift in Sources */,
+				B508700429AFDF790009ACD3 /* WebImageView.swift in Sources */,
 				B5B96B0429AE95D6009B31BB /* ApiService.swift in Sources */,
 				B5B96B0629AE96B7009B31BB /* String+URL.swift in Sources */,
 				B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */,
