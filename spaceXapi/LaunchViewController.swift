@@ -11,7 +11,7 @@ import Moya
 
 class LaunchViewController: UIViewController {
 
-    var launches: [LaunchModel] = []
+    var listLaunches: [ListLaunch] = []
     
     let tableView = UITableView()
 //    let logoView = UIImageView()
@@ -27,7 +27,7 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //        loadData()
+        loadData()
         title = "LAUNCHES"
         
         layoutTableView()
@@ -47,21 +47,24 @@ class LaunchViewController: UIViewController {
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
 
-            if self.launches.count > 0 {
+            if self.listLaunches.count > 0 {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
         }
 
         let provider = MoyaProvider<ApiService>()
         
-        provider.request(.pastLaunches(page: 10))
-        { result in
-
+        provider.request(.pastLaunches(page: 1))
+        { [weak self] result in
+            guard let self = self else { return }
             switch result {
                 
             case .success(let response):
                 do {
                     let launchData = try response.map(LaunchModel.self)
+                    self.listLaunches = launchData.docs
+                    print(launchData.docs.count)
+                    self.tableView.reloadData()
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -94,12 +97,13 @@ extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        listLaunches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.cellId, for: indexPath) as! LaunchTableViewCell
-       
+        let descriptionLaunch = listLaunches[indexPath.row]
+        cell.setupCell(descriptionLaunch: descriptionLaunch)
         
         return cell
     }

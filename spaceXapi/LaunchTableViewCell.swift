@@ -41,7 +41,16 @@ class LaunchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    func setupCell(descriptionLaunch: ListLaunch) {
+        statusMissionLabel.text = "status: \(String(describing: descriptionLaunch.success))"
+        nameLabel.text = "\(descriptionLaunch.name ?? "N/A")"
+        countFirstStagesLabel.text = "count First Stages: \(descriptionLaunch.cores.count)"
+        
+        // сделать Расширения для преобразования даты
+        let date = descriptionLaunch.date_utc
+        
+        // Сервис для скачивания картинки
+    }
     
     private func configDateLabel() {
         dateLabel.font = UIFont.systemFont(ofSize: 14)
