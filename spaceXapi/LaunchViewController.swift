@@ -12,12 +12,12 @@ import Moya
 class LaunchViewController: UIViewController {
 
     var launches: [LaunchModel] = []
-
-    let logoView = UIImageView()
+    
+    let tableView = UITableView()
+//    let logoView = UIImageView()
 
     let titleLabel = UILabel()
 
-    let tableView = UITableView()
 
 
     let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
@@ -32,7 +32,6 @@ class LaunchViewController: UIViewController {
         
         layoutTableView()
         configureTableView()
-
     }
 
     
@@ -100,7 +99,7 @@ extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.cellId, for: indexPath) as! LaunchTableViewCell
-        cell.label.text = "\(indexPath)"
+       
         
         return cell
     }
