@@ -7,18 +7,24 @@
 
 import Foundation
 
+struct LaunchModel: Codable {
+    let docs: [ListLaunch]
+    
+    let totalDocs: Int
+    let limit: Int
+    let totalPages: Int
+    let page: Int
+}
 
-struct LaunchModel: Decodable {
-
+struct ListLaunch: Codable {
     let success: Bool?
     let name: String?
     let cores: [CoresFlight]
     let id: String?
     let date_utc: String?
-
 }
 
 
-struct CoresFlight: Decodable {
+struct CoresFlight: Codable {
     let flight: Int?
 }

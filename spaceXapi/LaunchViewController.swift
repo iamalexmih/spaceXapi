@@ -9,7 +9,7 @@ import UIKit
 import Stevia
 import Moya
 
-class ViewController: UIViewController {
+class LaunchViewController: UIViewController {
 
     var launches: [LaunchModel] = []
 
@@ -26,14 +26,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        loadData()
+
+        //        loadData()
+        title = "LAUNCHES"
         
+        layoutTableView()
+        configureTableView()
+
     }
 
     
-    func loadData(isFirstLoad: Bool = false)
-    {
+    func loadData(isFirstLoad: Bool = false) {
 //        if isFirstLoad {
 //            launches = []
 //            tableView.reloadData()
@@ -52,16 +55,14 @@ class ViewController: UIViewController {
 
         let provider = MoyaProvider<ApiService>()
         
-        provider.request(.pastLaunches)
+        provider.request(.pastLaunches(page: 10))
         { result in
 
             switch result {
                 
             case .success(let response):
-                print(response.request?.url)
                 do {
-                    let launchData = try response.map([LaunchModel].self)
-                    print(launchData)
+                    let launchData = try response.map(LaunchModel.self)
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -73,5 +74,34 @@ class ViewController: UIViewController {
         }
     }
     
+ 
 }
 
+// MARK: Configure Table View
+extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private func layoutTableView() {
+        view.subviews {
+            tableView
+        }
+        tableView.fillContainer()
+    }
+    
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(LaunchTableViewCell.self, forCellReuseIdentifier: LaunchTableViewCell.cellId)
+        tableView.separatorStyle = .none
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.cellId, for: indexPath) as! LaunchTableViewCell
+        cell.label.text = "\(indexPath)"
+        
+        return cell
+    }
+}

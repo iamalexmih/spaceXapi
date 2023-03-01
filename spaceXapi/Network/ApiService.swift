@@ -10,7 +10,7 @@ import Moya
 
 
 enum ApiService {
-    case pastLaunches
+    case pastLaunches(page: Int)
 }
 
 extension ApiService: TargetType {
@@ -22,27 +22,37 @@ extension ApiService: TargetType {
     var path: String {
         switch self {
         case .pastLaunches:
-            return "launches"
+            return "launches/query"
         }
     }
 
     var method: Moya.Method {
         switch self {
         case .pastLaunches:
-            return .get
+            return .post
         }
     }
+    
 
     var task: Task {
         switch self {
-        case .pastLaunches:
-            return .requestParameters(parameters: [
-//                "sort": "launch_date_utc",
-//                "order": "asc",
-                "limit": 2
-            ], encoding: URLEncoding.default)
+        case .pastLaunches(let page):
+            
+            let dateFilter = ["$gte": "2021-01-01T00:00:00.000Z"]
+            let query = ["date_utc": dateFilter]
+            let options: [String : Any] = [
+                "page": page,
+                "sort": "desc"
+            ]
+            
+            let parameters: [String : Any]  = [
+                "query": query,
+                "options": options
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
+    
 
     var sampleData: Data {
         return Data()
