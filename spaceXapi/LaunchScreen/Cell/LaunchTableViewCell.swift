@@ -45,9 +45,9 @@ class LaunchTableViewCell: UITableViewCell {
         nameLabel.text = "\(descriptionLaunch.name ?? "N/A")"
         countFirstStagesLabel.text = "count first stages: \(descriptionLaunch.cores?.count.description ?? "N/A")"
         
-        // Активити индикатор Старт
-        iconMission.set(imageURL: descriptionLaunch.links.patch?.small) {
-            //TODO: Активити индикатор стоп
+        activiteIndicator.startAnimating()
+        iconMission.set(imageURL: descriptionLaunch.links.patch?.small) { [activiteIndicator] in
+            activiteIndicator.stopAnimating()
         }
         
         //TODO: Сделать чтоб дата форматировалась в Модели
@@ -75,9 +75,15 @@ extension LaunchTableViewCell {
             dateLabel
             stackLabels
         }
+        
+        iconMission.subviews {
+            activiteIndicator
+        }
     }
     
     private func setConstraintStackLabels() {
+        activiteIndicator.fillContainer()
+        
         stackLabels.layout {
             16
             |nameLabel|

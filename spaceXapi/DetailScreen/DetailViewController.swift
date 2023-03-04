@@ -69,8 +69,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 extension DetailViewController {
     private func setupDataLaunchForLabels() {
         activiteIndicator.startAnimating()
-        iconMission.set(imageURL: viewModel.launch.links.patch?.large) {
-            self.activiteIndicator.stopAnimating()
+        iconMission.set(imageURL: viewModel.launch.links.patch?.large) { [activiteIndicator] in
+           activiteIndicator.stopAnimating()
         }
         nameMissionLabel.text = viewModel.launch.name
         statusMissionLabel.text = viewModel.launch.success?.description ?? "N/A"
@@ -88,6 +88,8 @@ extension DetailViewController {
     }
     
     private func configureViewAndLabels() {
+        activiteIndicator.color = .gray
+        
         cardView.layer.cornerRadius = 30
         cardView.backgroundColor = UIColor(named: "cardViewBG")
         
@@ -148,7 +150,6 @@ extension DetailViewController {
         iconMission.subviews {
             activiteIndicator
         }
-        activiteIndicator.fillContainer()
     }
     
     private func setConstraints() {
@@ -157,7 +158,8 @@ extension DetailViewController {
         collectionView.width(100%).height(80)
         iconMission.width(240).height(240).top(0).centerHorizontally()
         cardView.width(100%).height(view.frame.height + 600).top(250)
-       
+        activiteIndicator.fillContainer()
+        
         cardView.layout {
             60
             |-16-statusMissionSubtitleLabel-8-statusMissionLabel|

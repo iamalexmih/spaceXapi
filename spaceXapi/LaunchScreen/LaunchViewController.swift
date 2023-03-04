@@ -24,7 +24,6 @@ class LaunchViewController: UIViewController {
     
     
     private func loadLaunchsData(page: Int) {
-        //TODO: Добавить Активити индикатор пока грузятся данные
         viewModel.fetchLaunchsData(page) {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
