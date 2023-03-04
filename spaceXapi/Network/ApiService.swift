@@ -11,24 +11,29 @@ import Moya
 
 enum ApiService {
     case pastLaunches(page: Int)
+    case getMembersCrew(idLaunch: String)
 }
 
 extension ApiService: TargetType {
 
     var baseURL: URL {
-        return URL(string: "https://api.spacexdata.com/v4/")!
+        return URL(string: "https://api.spacexdata.com")!
     }
 
     var path: String {
         switch self {
         case .pastLaunches:
-            return "launches/query"
+            return "/v4/launches/query"
+        case .getMembersCrew:
+            return "/v4/crew/query"
         }
     }
 
     var method: Moya.Method {
         switch self {
         case .pastLaunches:
+            return .post
+        case .getMembersCrew:
             return .post
         }
     }
@@ -37,7 +42,6 @@ extension ApiService: TargetType {
     var task: Task {
         switch self {
         case .pastLaunches(let page):
-//            desc asc
             let dateFilter = ["$gte": "2021-01-01T00:00:00.000Z"]
             let query = ["date_utc": dateFilter]
             let options: [String : Any] = [
@@ -48,6 +52,15 @@ extension ApiService: TargetType {
             let parameters: [String : Any]  = [
                 "query": query,
                 "options": options
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case .getMembersCrew(let idLaunch):
+            let contain = ["$in": ["\(idLaunch)"]]
+            let query = ["launches": contain]
+            
+            let parameters: [String : Any]  = [
+                "query": query
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }

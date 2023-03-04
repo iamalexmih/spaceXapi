@@ -7,21 +7,23 @@
 
 import Foundation
 
-struct LaunchModel: Codable {
-    let docs: [ListLaunch]
+struct ListLaunch: Codable {
+    let docs: [Launch]
     let totalDocs: Int
     let limit: Int
     let totalPages: Int
     let page: Int
 }
 
-struct ListLaunch: Codable {
-    let success: Bool?
-    let name: String?
-    let cores: [CoresFlight]?
+struct Launch: Codable {
     let id: String?
+    let name: String?
+    let success: Bool?
+    let cores: [CoresFlight]?
     let date_utc: String?
     let links: Patch
+    let details: String?
+    let crew: [String?]
 }
 
 
@@ -36,4 +38,5 @@ struct Patch: Codable {
 
 struct SizeImage: Codable {
     let small: String?
+    let large: String?
 }

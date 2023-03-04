@@ -9,7 +9,6 @@ import Foundation
 
 
 extension String {
-    // формат даты ДД-ММ-ГГГГ
     func convertDate() -> String {
         let dateFormatterISO8601 = ISO8601DateFormatter()
         dateFormatterISO8601.formatOptions.insert(.withFractionalSeconds)

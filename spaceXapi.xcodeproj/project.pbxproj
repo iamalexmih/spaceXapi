@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B508700429AFDF790009ACD3 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508700329AFDF790009ACD3 /* WebImageView.swift */; };
+		B508700629B0C1040009ACD3 /* CrewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508700529B0C1040009ACD3 /* CrewModel.swift */; };
+		B508700D29B0CCAA0009ACD3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508700C29B0CCAA0009ACD3 /* DetailViewController.swift */; };
+		B508700F29B105180009ACD3 /* CrewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508700E29B105180009ACD3 /* CrewCell.swift */; };
+		B508701329B1FC590009ACD3 /* BuilderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701229B1FC590009ACD3 /* BuilderService.swift */; };
+		B508701529B1FC940009ACD3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701429B1FC940009ACD3 /* AppCoordinator.swift */; };
+		B508701729B1FEAA0009ACD3 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701629B1FEAA0009ACD3 /* LaunchViewModel.swift */; };
+		B508701929B201280009ACD3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701829B201280009ACD3 /* DetailViewModel.swift */; };
+		B508701B29B22D3B0009ACD3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701A29B22D3B0009ACD3 /* NetworkService.swift */; };
 		B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADD29AE0188009B31BB /* AppDelegate.swift */; };
 		B5B96AE029AE0188009B31BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADF29AE0188009B31BB /* SceneDelegate.swift */; };
 		B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96AE129AE0188009B31BB /* LaunchViewController.swift */; };
@@ -24,6 +32,14 @@
 
 /* Begin PBXFileReference section */
 		B508700329AFDF790009ACD3 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		B508700529B0C1040009ACD3 /* CrewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewModel.swift; sourceTree = "<group>"; };
+		B508700C29B0CCAA0009ACD3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B508700E29B105180009ACD3 /* CrewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCell.swift; sourceTree = "<group>"; };
+		B508701229B1FC590009ACD3 /* BuilderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderService.swift; sourceTree = "<group>"; };
+		B508701429B1FC940009ACD3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		B508701629B1FEAA0009ACD3 /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
+		B508701829B201280009ACD3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		B508701A29B22D3B0009ACD3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B5B96ADA29AE0188009B31BB /* spaceXapi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spaceXapi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B96ADD29AE0188009B31BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B96ADF29AE0188009B31BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +67,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B508700729B0CBF60009ACD3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B5B96B0529AE96B7009B31BB /* String+URL.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B508700829B0CC110009ACD3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B508700329AFDF790009ACD3 /* WebImageView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B508700929B0CC6C0009ACD3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B5B96B0A29AF6CDA009B31BB /* LaunchTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B508700A29B0CC7B0009ACD3 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B5B96AE129AE0188009B31BB /* LaunchViewController.swift */,
+				B508701629B1FEAA0009ACD3 /* LaunchViewModel.swift */,
+				B508700929B0CC6C0009ACD3 /* Cell */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		B508700B29B0CC970009ACD3 /* DetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B508700C29B0CCAA0009ACD3 /* DetailViewController.swift */,
+				B508701829B201280009ACD3 /* DetailViewModel.swift */,
+				B508701029B1051D0009ACD3 /* Cell */,
+			);
+			path = DetailScreen;
+			sourceTree = "<group>";
+		};
+		B508701029B1051D0009ACD3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B508700E29B105180009ACD3 /* CrewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B508701129B1FC450009ACD3 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B508701229B1FC590009ACD3 /* BuilderService.swift */,
+				B508701429B1FC940009ACD3 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		B5B96AD129AE0188009B31BB = {
 			isa = PBXGroup;
 			children = (
@@ -71,11 +148,12 @@
 			isa = PBXGroup;
 			children = (
 				B5B96B0729AF6BA8009B31BB /* Application */,
-				B5B96AE129AE0188009B31BB /* LaunchViewController.swift */,
-				B5B96B0A29AF6CDA009B31BB /* LaunchTableViewCell.swift */,
+				B508701129B1FC450009ACD3 /* Coordinator */,
+				B508700A29B0CC7B0009ACD3 /* LaunchScreen */,
+				B508700B29B0CC970009ACD3 /* DetailScreen */,
 				B5B96B0829AF6BB4009B31BB /* Network */,
-				B5B96B0529AE96B7009B31BB /* String+URL.swift */,
-				B508700329AFDF790009ACD3 /* WebImageView.swift */,
+				B508700729B0CBF60009ACD3 /* Extension */,
+				B508700829B0CC110009ACD3 /* Helpers */,
 				B5B96B0029AE3BDA009B31BB /* Model */,
 				B5B96B0929AF6BC1009B31BB /* Resource */,
 			);
@@ -86,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B96B0129AE3BEB009B31BB /* LaunchModel.swift */,
+				B508700529B0C1040009ACD3 /* CrewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B96B0329AE95D6009B31BB /* ApiService.swift */,
+				B508701A29B22D3B0009ACD3 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -199,12 +279,20 @@
 			files = (
 				B5B96B0229AE3BEB009B31BB /* LaunchModel.swift in Sources */,
 				B508700429AFDF790009ACD3 /* WebImageView.swift in Sources */,
+				B508701529B1FC940009ACD3 /* AppCoordinator.swift in Sources */,
 				B5B96B0429AE95D6009B31BB /* ApiService.swift in Sources */,
+				B508700F29B105180009ACD3 /* CrewCell.swift in Sources */,
 				B5B96B0629AE96B7009B31BB /* String+URL.swift in Sources */,
+				B508701329B1FC590009ACD3 /* BuilderService.swift in Sources */,
 				B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */,
 				B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */,
+				B508701729B1FEAA0009ACD3 /* LaunchViewModel.swift in Sources */,
+				B508701B29B22D3B0009ACD3 /* NetworkService.swift in Sources */,
 				B5B96B0B29AF6CDA009B31BB /* LaunchTableViewCell.swift in Sources */,
+				B508700D29B0CCAA0009ACD3 /* DetailViewController.swift in Sources */,
 				B5B96AE029AE0188009B31BB /* SceneDelegate.swift in Sources */,
+				B508701929B201280009ACD3 /* DetailViewModel.swift in Sources */,
+				B508700629B0C1040009ACD3 /* CrewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
