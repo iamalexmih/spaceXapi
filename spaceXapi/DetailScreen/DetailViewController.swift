@@ -16,9 +16,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     private let scrollView = UIScrollView()
     private let cardView = UIView()
-    
-    private let contentView = UIView()
-    
+    private let containerViewIconMission = UIView()
     private let iconMission = WebImageView()
     private let nameMissionLabel = UILabel()
     private let countFirstStagesSubtitleLabel  = UILabel()
@@ -28,26 +26,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     private let detailsMissionLabel = UILabel()
     private let dateSubtitleLabel = UILabel()
     private let dateLabel = UILabel()
-    
     private var collectionView = UICollectionView(frame: .zero,
                                                   collectionViewLayout: UICollectionViewLayout())
     private let crewTitle = UILabel()
-    private let nameCrewLabel = UILabel()
-    private let agencyCrewLabel = UILabel()
-    private let statusCrewLabel = UILabel()
     private let activiteIndicator = UIActivityIndicatorView()
     
-    //TODO: Сделать динамический размер scrollView через scrollView.contentLayoutGuide
-//    let contentLayoutGuide = scrollView.contentLayoutGuide
-    
-    private var contentSize: CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height + 600)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        layoutScrollView()
         configureCollectionView()
         addSubviewsView()
         setConstraints()
@@ -90,28 +76,26 @@ extension DetailViewController {
     }
     
     private func configureViewAndLabels() {
+        scrollView.backgroundColor = Const.Color.lightGray
+        scrollView.showsHorizontalScrollIndicator = false
         activiteIndicator.color = .gray
         cardView.layer.cornerRadius = 30
         cardView.backgroundColor = Const.Color.lightGray
+        containerViewIconMission.backgroundColor = .white
         iconMission.contentMode = .scaleAspectFit
         iconMission.layer.cornerRadius = 20
         iconMission.clipsToBounds = true
+        iconMission.backgroundColor = .white
         nameMissionLabel.font = Const.Font.largeBold
         nameMissionLabel.textAlignment = .center
+        nameMissionLabel.adjustsFontSizeToFitWidth = true
+        nameMissionLabel.minimumScaleFactor = 0.7
+        nameMissionLabel.numberOfLines = 2
         statusMissionLabel.font = Const.Font.mediumBold
         dateLabel.font = Const.Font.mediumBold
         countFirstStagesLabel.font = Const.Font.mediumBold
         crewTitle.textAlignment = .center
         detailsMissionLabel.numberOfLines = 0
-    }
-    
-    private func layoutScrollView() {
-        scrollView.backgroundColor = .white
-        scrollView.alwaysBounceHorizontal = false
-        scrollView.alwaysBounceVertical = true
-        scrollView.frame = view.bounds
-        scrollView.contentSize = contentSize
-        scrollView.showsHorizontalScrollIndicator = false
     }
 }
 
@@ -120,14 +104,6 @@ extension DetailViewController {
 
 extension DetailViewController {
     private func addSubviewsView() {
-        view.subviews (scrollView)
-        scrollView.fillContainer()
-        
-        scrollView.subviews {
-            iconMission
-            cardView
-        }
-        
         cardView.subviews {
             nameMissionLabel
             countFirstStagesLabel
@@ -137,28 +113,32 @@ extension DetailViewController {
             dateSubtitleLabel
             dateLabel
             crewTitle
-            nameCrewLabel
-            agencyCrewLabel
-            statusCrewLabel
             collectionView
             detailsMissionLabel
         }
         
-        iconMission.subviews {
-            activiteIndicator
+        iconMission.subviews { activiteIndicator }
+        containerViewIconMission.subviews { iconMission }
+        
+        scrollView.subviews {
+            containerViewIconMission
+            cardView
         }
+        
+        view.subviews (scrollView)
     }
     
     private func setConstraints() {
-        nameMissionLabel.width(100%).height(50).top(0)
-        align(horizontally: nameMissionLabel)
-        collectionView.width(100%).height(80)
+        containerViewIconMission.width(100%).height(290)
         iconMission.width(240).height(240).top(10).centerHorizontally()
-        cardView.width(100%).height(view.frame.height + 600).top(260)
         activiteIndicator.fillContainer()
-        
+        nameMissionLabel.width(100%)
+        collectionView.width(100%).height(80)
+        cardView.width(100%).top(260).bottom(0)
         cardView.layout {
-            60
+            8
+            |-16-nameMissionLabel-16-|
+            16
             |-16-statusMissionSubtitleLabel-statusMissionLabel|
             12
             |-16-dateSubtitleLabel-dateLabel|
@@ -170,7 +150,9 @@ extension DetailViewController {
             |collectionView|
             16
             |-16-detailsMissionLabel-16-|
+            16
         }
+        scrollView.fillContainer()
     }
 }
 
@@ -188,6 +170,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CrewCell.self, forCellWithReuseIdentifier: CrewCell.cellId)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

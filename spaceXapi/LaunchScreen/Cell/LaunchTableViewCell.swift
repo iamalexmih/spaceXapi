@@ -22,10 +22,9 @@ class LaunchTableViewCell: UITableViewCell {
     private let stackLabels = UIView()
     private let activiteIndicator = UIActivityIndicatorView()
     
-
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         addSubviews()
         setConstraintStackLabels()
         setConstraintCardView()
@@ -50,8 +49,6 @@ class LaunchTableViewCell: UITableViewCell {
         dateLabel.text = descriptionLaunch.date
     }
 }
-
-
 
 // MARK: Layout Views and Labels
 
@@ -107,6 +104,8 @@ extension LaunchTableViewCell {
     private func configNameLabel() {
         nameLabel.font = Const.Font.mediumBold
         nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0.7
+        nameLabel.numberOfLines = 2
     }
     
     private func configDateLabel() {

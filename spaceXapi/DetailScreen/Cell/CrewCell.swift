@@ -20,7 +20,6 @@ class CrewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        
         backgroundColor = .white
         layer.cornerRadius = 20
         layer.borderWidth = 1
