@@ -11,7 +11,7 @@ import Stevia
 
 class LaunchTableViewCell: UITableViewCell {
 
-    static let cellId = "cell"
+    static let cellId = "LaunchTableViewCell"
     
     private let cardView = UIView()
     private let iconMission = WebImageView()
@@ -39,20 +39,15 @@ class LaunchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(descriptionLaunch: Launch) {
-        // TODO: перенести логику Статус Миссии success в модель для парсинга.
-        statusMissionLabel.text = "status: \(descriptionLaunch.success?.description ?? "N/A")"
-        nameLabel.text = "\(descriptionLaunch.name ?? "N/A")"
-        countFirstStagesLabel.text = "count first stages: \(descriptionLaunch.cores?.count.description ?? "N/A")"
-        
+    func setupCell(_ descriptionLaunch: Launch) {
+        statusMissionLabel.text = Const.String.statusSubTitle + descriptionLaunch.status
+        nameLabel.text = descriptionLaunch.name ?? Const.String.notAvailable
+        countFirstStagesLabel.text = Const.String.countFirstStagesSubTitle + descriptionLaunch.countFirstStages
         activiteIndicator.startAnimating()
         iconMission.set(imageURL: descriptionLaunch.links.patch?.small) { [activiteIndicator] in
             activiteIndicator.stopAnimating()
         }
-        
-        //TODO: Сделать чтоб дата форматировалась в Модели
-        let date = descriptionLaunch.date_utc
-        dateLabel.text = date?.convertDate()
+        dateLabel.text = descriptionLaunch.date
     }
 }
 
@@ -63,7 +58,7 @@ class LaunchTableViewCell: UITableViewCell {
 extension LaunchTableViewCell {
     private func addSubviews() {
         contentView.subviews { cardView }
-        
+
         stackLabels.subviews {
             nameLabel
             statusMissionLabel
@@ -83,7 +78,6 @@ extension LaunchTableViewCell {
     
     private func setConstraintStackLabels() {
         activiteIndicator.fillContainer()
-        
         stackLabels.layout {
             16
             |nameLabel|
@@ -111,22 +105,26 @@ extension LaunchTableViewCell {
 
 extension LaunchTableViewCell {
     private func configNameLabel() {
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        nameLabel.font = Const.Font.mediumBold
+        nameLabel.adjustsFontSizeToFitWidth = true
     }
     
     private func configDateLabel() {
-        dateLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        dateLabel.font = Const.Font.smallBold
         dateLabel.textColor = .gray
         dateLabel.textAlignment = .right
     }
     
     private func configCardView() {
         cardView.layer.cornerRadius = 15
-        cardView.backgroundColor = UIColor(named: "cardViewBG")
+        cardView.backgroundColor = Const.Color.lightGray
+        cardView.layer.shadowOpacity = 0.23
+        cardView.layer.shadowRadius = 4
+        cardView.layer.shadowColor = UIColor.black.cgColor
     }
     
     private func configIconMission() {
-        iconMission.layer.cornerRadius = 50
+        iconMission.layer.cornerRadius = 15
         iconMission.clipsToBounds = true
         iconMission.contentMode = .scaleAspectFit
     }

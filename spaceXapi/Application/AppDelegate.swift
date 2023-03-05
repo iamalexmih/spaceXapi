@@ -7,7 +7,7 @@
 
 import UIKit
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Properties
     var window: UIWindow?
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let builderService = BuilderService()
         let navigationController = UINavigationController()
-        let coordinator = AppCoordinator(builderService: builderService, navigationController: navigationController)
+        let coordinator = AppCoordinator(builderService, navigationController)
         coordinator.initialRootController()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

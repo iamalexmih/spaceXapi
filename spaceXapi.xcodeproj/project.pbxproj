@@ -16,6 +16,9 @@
 		B508701729B1FEAA0009ACD3 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701629B1FEAA0009ACD3 /* LaunchViewModel.swift */; };
 		B508701929B201280009ACD3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701829B201280009ACD3 /* DetailViewModel.swift */; };
 		B508701B29B22D3B0009ACD3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508701A29B22D3B0009ACD3 /* NetworkService.swift */; };
+		B5A7ED3D29B3D13000F590A3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7ED3C29B3D13000F590A3 /* NetworkError.swift */; };
+		B5A7ED3F29B474A900F590A3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7ED3E29B474A900F590A3 /* Constant.swift */; };
+		B5A7ED4329B4868200F590A3 /* todo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A7ED4229B4868200F590A3 /* todo.strings */; };
 		B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADD29AE0188009B31BB /* AppDelegate.swift */; };
 		B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96AE129AE0188009B31BB /* LaunchViewController.swift */; };
 		B5B96AE729AE0189009B31BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B96AE629AE0189009B31BB /* Assets.xcassets */; };
@@ -39,6 +42,9 @@
 		B508701629B1FEAA0009ACD3 /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
 		B508701829B201280009ACD3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B508701A29B22D3B0009ACD3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B5A7ED3C29B3D13000F590A3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		B5A7ED3E29B474A900F590A3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		B5A7ED4229B4868200F590A3 /* todo.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = todo.strings; sourceTree = "<group>"; };
 		B5B96ADA29AE0188009B31BB /* spaceXapi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spaceXapi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B96ADD29AE0188009B31BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B96AE129AE0188009B31BB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +82,9 @@
 		B508700829B0CC110009ACD3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B508700729B0CBF60009ACD3 /* Extension */,
 				B508700329AFDF790009ACD3 /* WebImageView.swift */,
+				B5A7ED3E29B474A900F590A3 /* Constant.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 		B5B96AD129AE0188009B31BB = {
 			isa = PBXGroup;
 			children = (
+				B5A7ED4229B4868200F590A3 /* todo.strings */,
 				B5B96ADC29AE0188009B31BB /* spaceXapi */,
 				B5B96ADB29AE0188009B31BB /* Products */,
 			);
@@ -150,7 +159,6 @@
 				B508700A29B0CC7B0009ACD3 /* LaunchScreen */,
 				B508700B29B0CC970009ACD3 /* DetailScreen */,
 				B5B96B0829AF6BB4009B31BB /* Network */,
-				B508700729B0CBF60009ACD3 /* Extension */,
 				B508700829B0CC110009ACD3 /* Helpers */,
 				B5B96B0029AE3BDA009B31BB /* Model */,
 				B5B96B0929AF6BC1009B31BB /* Resource */,
@@ -180,6 +188,7 @@
 			children = (
 				B5B96B0329AE95D6009B31BB /* ApiService.swift */,
 				B508701A29B22D3B0009ACD3 /* NetworkService.swift */,
+				B5A7ED3C29B3D13000F590A3 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B96AEA29AE0189009B31BB /* LaunchScreen.storyboard in Resources */,
+				B5A7ED4329B4868200F590A3 /* todo.strings in Resources */,
 				B5B96AE729AE0189009B31BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B96B0229AE3BEB009B31BB /* LaunchModel.swift in Sources */,
+				B5A7ED3F29B474A900F590A3 /* Constant.swift in Sources */,
+				B5A7ED3D29B3D13000F590A3 /* NetworkError.swift in Sources */,
 				B508700429AFDF790009ACD3 /* WebImageView.swift in Sources */,
 				B508701529B1FC940009ACD3 /* AppCoordinator.swift in Sources */,
 				B5B96B0429AE95D6009B31BB /* ApiService.swift in Sources */,

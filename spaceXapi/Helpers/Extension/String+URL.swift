@@ -9,14 +9,18 @@ import Foundation
 
 
 extension String {
-    func convertDate() -> String {
+    func convertDate(showTime: Bool) -> String {
         let dateFormatterISO8601 = ISO8601DateFormatter()
         dateFormatterISO8601.formatOptions.insert(.withFractionalSeconds)
         let date = dateFormatterISO8601.date(from: self)
         guard let date = date else { return "N/A" }
-
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        if showTime {
+            dateFormatter.dateFormat = "HH-mm dd-MM-yyyy"
+        } else {
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+        }
+
         return dateFormatter.string(from: date)
     }
 }

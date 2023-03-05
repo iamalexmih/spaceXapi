@@ -11,7 +11,7 @@ import Foundation
 
 class DetailViewModel {
     var launch: Launch
-    var networkService: NetworkService!
+    var networkService: NetworkServiceProtocol!
     var listMembersCrew: [CrewModel] = []
     
     init(launch: Launch) {

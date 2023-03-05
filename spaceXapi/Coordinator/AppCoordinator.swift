@@ -7,29 +7,29 @@
 
 import UIKit
 
-protocol AppRoutingLogic: AnyObject {
+protocol AppCoordinatorProtocol: AnyObject {
     func initialRootController()
-    func showLaunchDetailsViewController(detailViewModel: DetailViewModel)
+    func showDetailScreen(_ detailViewModel: DetailViewModel)
 }
 
-class AppCoordinator: AppRoutingLogic {
+class AppCoordinator: AppCoordinatorProtocol {
     
     let navigationController: UINavigationController
     let builderService: BuilderServiceProtocol
     
-    init(builderService: BuilderServiceProtocol, navigationController: UINavigationController) {
+    init(_ builderService: BuilderServiceProtocol, _ navigationController: UINavigationController) {
         self.builderService = builderService
         self.navigationController = navigationController
     }
     
     func initialRootController() {
         navigationController.viewControllers = [
-            builderService.makeLaunchsListViewController(coordinator: self)
+            builderService.makeLaunchScreen(coordinator: self)
         ]
     }
     
-    func showLaunchDetailsViewController(detailViewModel: DetailViewModel) {
-        let vc = builderService.makeLaunchDetailsViewController(detailViewModel: detailViewModel)
+    func showDetailScreen(_ detailViewModel: DetailViewModel) {
+        let vc = builderService.makeDetailScreen(detailViewModel)
         navigationController.pushViewController(vc, animated: true)
     }
 }

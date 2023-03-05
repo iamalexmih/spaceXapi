@@ -8,15 +8,15 @@
 import UIKit
 
 protocol BuilderServiceProtocol: AnyObject {
-    func makeLaunchsListViewController(coordinator: AppRoutingLogic) -> UIViewController
-    func makeLaunchDetailsViewController(detailViewModel: DetailViewModel) -> UIViewController
+    func makeLaunchScreen(coordinator: AppCoordinatorProtocol) -> UIViewController
+    func makeDetailScreen(_ detailViewModel: DetailViewModel) -> UIViewController
 }
 
 class BuilderService: BuilderServiceProtocol {
     
     private let networkService = NetworkService()
     
-    func makeLaunchsListViewController(coordinator: AppRoutingLogic) -> UIViewController {
+    func makeLaunchScreen(coordinator: AppCoordinatorProtocol) -> UIViewController {
         let vc = LaunchViewController()
         let launchViewModel = LaunchViewModel(networkService: networkService)
         vc.coordinator = coordinator
@@ -24,7 +24,7 @@ class BuilderService: BuilderServiceProtocol {
         return vc
     }
 
-    func makeLaunchDetailsViewController(detailViewModel: DetailViewModel) -> UIViewController {
+    func makeDetailScreen(_ detailViewModel: DetailViewModel) -> UIViewController {
         let vc = DetailViewController()
         detailViewModel.networkService = self.networkService
         vc.viewModel = detailViewModel

@@ -24,23 +24,24 @@ class CrewCell: UICollectionViewCell {
         backgroundColor = .white
         layer.cornerRadius = 20
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = Const.Color.darkGray?.cgColor
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(descriptionCrew: CrewModel?) {
-        nameCrewLabel.text = descriptionCrew?.name ?? "N/A"
-        agencyCrewLabel.text = "agency: \(descriptionCrew?.agency ?? "N/A")"
-        statusCrewLabel.text = "status: \(descriptionCrew?.status ?? "N/A")"
+    func setupCell(_ descriptionCrew: CrewModel) {
+        nameCrewLabel.text = descriptionCrew.nameMember
+        nameCrewLabel.font = Const.Font.mediumBold
+        agencyCrewLabel.text = Const.String.agencySubTitle + descriptionCrew.agencyMember
+        statusCrewLabel.text = Const.String.statusSubTitle + descriptionCrew.statusMember
     }
     
     func setupEmptyCell() {
         nameCrewLabel.numberOfLines = 0
         nameCrewLabel.textAlignment = .center
-        nameCrewLabel.text = "No information about the Crew"
+        nameCrewLabel.text = Const.String.notAvailableCrew
         agencyCrewLabel.isHidden = true
         statusCrewLabel.isHidden = true
     }

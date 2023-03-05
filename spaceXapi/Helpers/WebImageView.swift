@@ -10,7 +10,7 @@ import Alamofire
 
 class WebImageView: UIImageView {
     
-    private var placeHolder = UIImage(named: "placeHolder")
+    private var placeHolder = Const.Image.placeHolder
     private var currentUrlString: String?
     
     func set(imageURL: String?, completion: @escaping () -> Void ) {
@@ -41,10 +41,9 @@ class WebImageView: UIImageView {
                         }
                     }
                 case .failure(let error):
-                    //TODO: Обработка ошибки
                     self?.image = self?.placeHolder
                     completion()
-                    print(error.localizedDescription)
+                    print(NetworkError.imageNotLoaded(error))
                 }
             }
     }

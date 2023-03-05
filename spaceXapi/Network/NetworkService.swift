@@ -8,12 +8,19 @@
 import Foundation
 import Moya
 
+protocol NetworkServiceProtocol: AnyObject {
+    func getListLaunchs(_ page: Int,
+                        completion: @escaping (Result<ListLaunch, NetworkError>) -> Void)
+    func getListMembersCrew(_ idLaunch: String,
+                            completion: @escaping (Result<ListMembersCrew, NetworkError>) -> Void)
+}
 
-class NetworkService {
+
+class NetworkService: NetworkServiceProtocol {
     
     private let provider = MoyaProvider<ApiService>()
     
-    func getListLaunchs(_ page: Int, completion: @escaping (Result<ListLaunch, Error>) -> Void) {
+    func getListLaunchs(_ page: Int, completion: @escaping (Result<ListLaunch, NetworkError>) -> Void) {
         provider.request(.pastLaunches(page: page)) { result in
             switch result {
             case .success(let response):
@@ -23,18 +30,16 @@ class NetworkService {
                         completion(.success(launchData))
                     }
                 } catch {
-                    print("Error Decodable ListLaunch: ", error.localizedDescription)
-                    completion(.failure(error))
+                    completion(.failure(NetworkError.parsing(error as? DecodingError)))
                 }
             case .failure(let error):
-                print("Error Moya ListLaunch", error.localizedDescription)
-                completion(.failure(error))
+                completion(.failure(NetworkError.moyaError(error)))
             }
         }
     }
     
     
-    func getListMembersCrew(_ idLaunch: String, completion: @escaping (Result<ListMembersCrew, Error>) -> Void) {
+    func getListMembersCrew(_ idLaunch: String, completion: @escaping (Result<ListMembersCrew, NetworkError>) -> Void) {
         provider.request(.getMembersCrew(idLaunch: idLaunch)) { result in
             switch result {
             case .success(let response):
@@ -44,12 +49,10 @@ class NetworkService {
                         completion(.success(crewData))
                     }
                 } catch {
-                    print("Error Decodable ListMembersCrew: ", error.localizedDescription)
-                    completion(.failure(error))
+                    completion(.failure(NetworkError.parsing(error as? DecodingError)))
                 }
             case .failure(let error):
-                print("Error Moya ListMembersCrew", error.localizedDescription)
-                completion(.failure(error))
+                completion(.failure(NetworkError.moyaError(error)))
             }
         }
     }
