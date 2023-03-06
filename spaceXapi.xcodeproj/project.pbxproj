@@ -20,6 +20,7 @@
 		B5A7ED3F29B474A900F590A3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7ED3E29B474A900F590A3 /* Constant.swift */; };
 		B5A7ED4529B5DFB000F590A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7ED4429B5DFB000F590A3 /* Event.swift */; };
 		B5A7ED4729B5E87D00F590A3 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7ED4629B5E87D00F590A3 /* ParentViewController.swift */; };
+		B5A7ED5029B61AC800F590A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5A7ED4F29B61AC800F590A3 /* README.md */; };
 		B5B96ADE29AE0188009B31BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96ADD29AE0188009B31BB /* AppDelegate.swift */; };
 		B5B96AE229AE0188009B31BB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96AE129AE0188009B31BB /* LaunchViewController.swift */; };
 		B5B96AE729AE0189009B31BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B96AE629AE0189009B31BB /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		B5A7ED3E29B474A900F590A3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B5A7ED4429B5DFB000F590A3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B5A7ED4629B5E87D00F590A3 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
+		B5A7ED4F29B61AC800F590A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5B96ADA29AE0188009B31BB /* spaceXapi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spaceXapi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B96ADD29AE0188009B31BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B96AE129AE0188009B31BB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		B5B96AD129AE0188009B31BB = {
 			isa = PBXGroup;
 			children = (
+				B5A7ED4F29B61AC800F590A3 /* README.md */,
 				B5B96ADC29AE0188009B31BB /* spaceXapi */,
 				B5B96ADB29AE0188009B31BB /* Products */,
 			);
@@ -282,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A7ED5029B61AC800F590A3 /* README.md in Resources */,
 				B5B96AEA29AE0189009B31BB /* LaunchScreen.storyboard in Resources */,
 				B5B96AE729AE0189009B31BB /* Assets.xcassets in Resources */,
 			);
