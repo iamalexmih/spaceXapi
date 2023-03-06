@@ -9,37 +9,51 @@ import UIKit
 import Stevia
 
 
-protocol ShowErrorDelegateProtocol {
-    func showError(_ error: Error)
-}
 
-class LaunchViewController: UIViewController {
+
+class LaunchViewController: ParentViewController {
     
     var coordinator: AppCoordinatorProtocol!
     var viewModel: LaunchViewModelProtocol!
     private let tableView = UITableView()
+    private let activityLabel = UILabel()
+    private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Const.String.titleLaunchesScreen
         layoutTableView()
         configureTableView()
-        setDelegateShowError()
+        observeEvent()
         loadLaunchsData(page: 1)
     }
     
     
     private func loadLaunchsData(page: Int) {
-        viewModel.fetchLaunchsData(page) {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+        viewModel.fetchLaunchsData(page)
+    }
+    
+    private func observeEvent() {
+        self.viewModel.eventHandler = { [weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .startLoading:
+                self.startLoadingIndicator()
+            case .dataLoaded:
+                self.stopLoadingIndicator()
                 self.tableView.reloadData()
+            case .error(let error):
+                self.showErrorAlert(error ?? .unknownError)
             }
         }
     }
+    
+    override func restart(action: UIAlertAction) {
+        loadLaunchsData(page: viewModel.currentPages)
+    }
 }
 
-// MARK: Configure Table View
+// MARK: - Configure Table View
 extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func layoutTableView() {
@@ -69,7 +83,7 @@ extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ditalLaunch = viewModel.listLaunches[indexPath.row]
-        let detailViewModel = DetailViewModel(launch: ditalLaunch)
+        let detailViewModel = DetailViewModel(launch: ditalLaunch, networkService: viewModel.networkService)
         coordinator.showDetailScreen(detailViewModel)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -79,34 +93,5 @@ extension LaunchViewController: UITableViewDelegate, UITableViewDataSource {
             viewModel.pagePlusOne()
             loadLaunchsData(page: viewModel.currentPages)
         }
-    }
-}
-
-// MARK: Show Error failure fetch LaunchsData
-
-extension LaunchViewController: ShowErrorDelegateProtocol {
-    
-    func setDelegateShowError() {
-        viewModel.showErrorDelegate = self
-    }
-    
-    func showError(_ error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let message = "\(error.localizedDescription) \(Const.String.Alert.restart)"
-            let action = UIAlertAction(title: Const.String.Alert.actionTitle,
-                                       style: .default,
-                                       handler: (self.restart))
-            let alertLogOut = UIAlertController(title: Const.String.Alert.messageTitle,
-                                                message: message,
-                                                preferredStyle: .alert)
-            alertLogOut.addAction(action)
-            self.present(alertLogOut, animated: true)
-            print(error)
-        }
-    }
-    
-    func restart(action: UIAlertAction) {
-        loadLaunchsData(page: viewModel.currentPages)
     }
 }

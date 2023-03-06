@@ -15,6 +15,7 @@ enum Const {
         static let statusSubTitle = "Status: "
         static let countFirstStagesSubTitle = "Count First Stages: "
         static let notAvailableDescript = "There are no launch descriptions."
+        static let loadingProcess = "loading"
         
         static let statusMissionSubtitle = "Status Mission: "
         static let dateSubtitle = "Date Launch: "
@@ -26,7 +27,7 @@ enum Const {
         static let failure = "failure"
         
         enum Alert {
-            static let restart = "\nRestart"
+            static let restart = "\n \nCheck your internet connection. \nRestart"
             static let actionTitle = "OK"
             static let messageTitle = "Oops"
         }

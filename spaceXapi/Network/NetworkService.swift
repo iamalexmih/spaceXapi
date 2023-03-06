@@ -26,9 +26,7 @@ class NetworkService: NetworkServiceProtocol {
             case .success(let response):
                 do {
                     let launchData = try response.map(ListLaunch.self)
-                    DispatchQueue.main.async {
-                        completion(.success(launchData))
-                    }
+                    completion(.success(launchData))
                 } catch {
                     completion(.failure(NetworkError.parsing(error as? DecodingError)))
                 }
