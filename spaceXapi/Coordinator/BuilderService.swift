@@ -9,7 +9,7 @@ import UIKit
 
 protocol BuilderServiceProtocol: AnyObject {
     func makeLaunchScreen(coordinator: AppCoordinatorProtocol) -> UIViewController
-    func makeDetailScreen(_ detailViewModel: DetailViewModel) -> UIViewController
+    func makeDetailScreen(_ detailViewModel: DetailViewModelProtocol) -> UIViewController
 }
 
 class BuilderService: BuilderServiceProtocol {
@@ -24,9 +24,8 @@ class BuilderService: BuilderServiceProtocol {
         return vc
     }
 
-    func makeDetailScreen(_ detailViewModel: DetailViewModel) -> UIViewController {
+    func makeDetailScreen(_ detailViewModel: DetailViewModelProtocol) -> UIViewController {
         let vc = DetailViewController()
-        detailViewModel.networkService = self.networkService
         vc.viewModel = detailViewModel
         return vc
     }

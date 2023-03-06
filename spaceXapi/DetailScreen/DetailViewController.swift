@@ -10,9 +10,9 @@ import Stevia
 
 
 
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+class DetailViewController: ParentViewController {
     
-    var viewModel: DetailViewModel!
+    var viewModel: DetailViewModelProtocol!
     
     private let scrollView = UIScrollView()
     private let cardView = UIView()
@@ -38,17 +38,33 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         addSubviewsView()
         setConstraints()
         configureViewAndLabels()
+        observeEvent()
         fetchDataCrew()
         setupTextForSubtitleLabels()
         setupDataLaunchForLabels()
     }
     
     private func fetchDataCrew() {
-        viewModel.fetchCrew { [collectionView] in
-            DispatchQueue.main.async {
-                collectionView.reloadData()
+        viewModel.fetchCrew()
+    }
+    
+    private func observeEvent() {
+        viewModel.eventHandler = { [weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .startLoading:
+                self.startLoadingIndicator()
+            case .dataLoaded:
+                self.stopLoadingIndicator()
+                self.collectionView.reloadData()
+            case .error(let error):
+                self.showErrorAlert(error ?? .unknownError)
             }
         }
+    }
+    
+    override func restart(action: UIAlertAction) {
+        fetchDataCrew()
     }
 }
 
@@ -58,7 +74,7 @@ extension DetailViewController {
     private func setupDataLaunchForLabels() {
         activiteIndicator.startAnimating()
         iconMission.set(imageURL: viewModel.launch.links.patch?.large) { [activiteIndicator] in
-           activiteIndicator.stopAnimating()
+            activiteIndicator.stopAnimating()
         }
         nameMissionLabel.text = viewModel.launch.name
         statusMissionLabel.text = viewModel.launch.status
@@ -177,7 +193,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if viewModel.launch.crew.isEmpty {
             return 1
         } else {
-        return viewModel.listMembersCrew.count
+            return viewModel.listMembersCrew.count
         }
     }
     

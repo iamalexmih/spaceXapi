@@ -9,7 +9,7 @@ import UIKit
 
 protocol AppCoordinatorProtocol: AnyObject {
     func initialRootController()
-    func showDetailScreen(_ detailViewModel: DetailViewModel)
+    func showDetailScreen(_ detailViewModel: DetailViewModelProtocol)
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -28,7 +28,7 @@ class AppCoordinator: AppCoordinatorProtocol {
         ]
     }
     
-    func showDetailScreen(_ detailViewModel: DetailViewModel) {
+    func showDetailScreen(_ detailViewModel: DetailViewModelProtocol) {
         let vc = builderService.makeDetailScreen(detailViewModel)
         navigationController.pushViewController(vc, animated: true)
     }

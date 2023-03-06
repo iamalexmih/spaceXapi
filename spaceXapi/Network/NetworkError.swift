@@ -16,6 +16,7 @@ enum NetworkError: Error, LocalizedError {
     case parsing(DecodingError?)
     case moyaError(MoyaError)
     case imageNotLoaded(AFError)
+    case unknownError
     
     var description: String {
         switch self {
@@ -28,6 +29,8 @@ enum NetworkError: Error, LocalizedError {
             return error.localizedDescription
         case .imageNotLoaded(let error):
             return "Image not loaded" + error.localizedDescription
+        case .unknownError:
+            return "Unknown Error"
         }
     }
 }
